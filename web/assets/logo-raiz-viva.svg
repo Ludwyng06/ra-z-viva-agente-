@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <!-- Soft organic circular background -->
+  <circle cx="32" cy="32" r="30" fill="#edf4ee" stroke="#c8decb" stroke-width="1.5"/>
+  
+  <!-- Stem -->
+  <path d="M32 23 C32 30 31.5 36 32 42" stroke="#2a5a3a" stroke-width="2.8" stroke-linecap="round"/>
+  
+  <!-- Right Leaf (Sage Green) -->
+  <path d="M32 27 C37 23 48 23 50 14 C40 15 34 21 32 27 Z" fill="#367448" stroke="#245432" stroke-width="0.8"/>
+  <path d="M32 27 C38 23 44 19 49 15" stroke="#edf4ee" stroke-width="0.8" stroke-linecap="round" opacity="0.6"/>
+  
+  <!-- Left Leaf (Fresh Leaf Green) -->
+  <path d="M32 31 C27 26 16 26 14 16 C24 17 30 24 32 31 Z" fill="#4d945f" stroke="#2e683e" stroke-width="0.8"/>
+  <path d="M32 31 C26 27 20 23 15 17" stroke="#edf4ee" stroke-width="0.8" stroke-linecap="round" opacity="0.6"/>
+  
+  <!-- Top Sprout Leaf -->
+  <path d="M32 24 C30 17 31 10 32 7 C33 10 34 17 32 24 Z" fill="#2d683f" stroke="#1f4c2c" stroke-width="0.6"/>
+  
+  <!-- Ground Seed Node -->
+  <ellipse cx="32" cy="42" rx="3.5" ry="2.2" fill="#7d5932"/>
+  
+  <!-- Earth / Soil Line -->
+  <path d="M22 42 Q32 43.5 42 42" stroke="#bfa68a" stroke-width="1.2" stroke-linecap="round" opacity="0.7"/>
+  
+  <!-- Roots (Warm Earth / Wood) -->
+  <path d="M32 43 C31.5 47 28 51 22 55" stroke="#7d5932" stroke-width="2" stroke-linecap="round"/>
+  <path d="M28 48 C25 50 23 52 20 53" stroke="#8f693e" stroke-width="1.2" stroke-linecap="round"/>
+  
+  <path d="M32 43 C32.5 48 32.2 53 32 58" stroke="#7d5932" stroke-width="2" stroke-linecap="round"/>
+  
+  <path d="M32 43 C33 47 36 51 42 55" stroke="#7d5932" stroke-width="2" stroke-linecap="round"/>
+  <path d="M36 48 C39 50 41 52 44 53" stroke="#8f693e" stroke-width="1.2" stroke-linecap="round"/>
+</svg>

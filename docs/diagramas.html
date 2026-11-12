@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Diagramas Técnicos y de Arquitectura — Agente de Raíz Viva Naturales</title>
+  <style>
+    :root {
+      --bg-main: #090d16;
+      --bg-card: #111827;
+      --bg-card-alt: #162032;
+      --border-color: #1e293b;
+      --border-accent: #334155;
+      --primary: #3b82f6;
+      --primary-hover: #2563eb;
+      --primary-glow: rgba(59, 130, 246, 0.25);
+      --accent-green: #10b981;
+      --accent-amber: #f59e0b;
+      --accent-purple: #8b5cf6;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --text-dim: #64748b;
+      --font-sans: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', monospace;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg-main);
+      color: var(--text-main);
+      font-family: var(--font-sans);
+      line-height: 1.6;
+      padding-bottom: 60px;
+    }
+
+    /* Top navigation header */
+    header {
+      position: sticky;
+      top: 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 14px 32px;
+      border-bottom: 1px solid var(--border-color);
+      background: rgba(9, 13, 22, 0.92);
+      backdrop-filter: blur(10px);
+      z-index: 100;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .brand-badge {
+      background: var(--primary-glow);
+      color: #93c5fd;
+      border: 1px solid rgba(59, 130, 246, 0.4);
+      padding: 3px 8px;
+      border-radius: 6px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+
+    .brand-title {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--text-main);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .nav-btn {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      color: var(--text-muted);
+      padding: 6px 14px;
+      border-radius: 6px;
+      text-decoration: none;
+      font-size: 0.85rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s;
+    }
+
+    .nav-btn:hover, .nav-btn.active {
+      background: var(--border-color);
+      color: var(--text-main);
+      border-color: var(--border-accent);
+    }
+
+    .nav-btn.primary {
+      background: var(--primary);
+      color: #ffffff;
+      border-color: var(--primary);
+    }
+
+    .nav-btn.primary:hover {
+      background: var(--primary-hover);
+    }
+
+    /* Container */
+    .container {
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 32px 24px;
+    }
+
+    /* Page Hero */
+    .hero {
+      margin-bottom: 36px;
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: 24px;
+    }
+
+    .hero-tag {
+      color: #60a5fa;
+      font-size: 0.82rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      margin-bottom: 8px;
+      display: inline-block;
+    }
+
+    .hero-title {
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: var(--text-main);
+      margin-bottom: 8px;
+      letter-spacing: -0.5px;
+    }
+
+    .hero-subtitle {
+      font-size: 1.05rem;
+      color: var(--text-muted);
+      max-width: 900px;
+    }
+
+    /* Quick jump pills */
+    .jump-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .jump-pill {
+      background: var(--bg-card-alt);
+      border: 1px solid var(--border-color);
+      color: #93c5fd;
+      padding: 6px 14px;
+      border-radius: 20px;
+      text-decoration: none;
+      font-size: 0.82rem;
+      font-weight: 500;
+      transition: all 0.2s;
+    }
+
+    .jump-pill:hover {
+      background: var(--border-accent);
+      color: #ffffff;
+      border-color: #60a5fa;
+    }
+
+    /* Diagram Card */
+    .diagram-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 14px;
+      padding: 32px;
+      margin-bottom: 40px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+    }
+
+    .diagram-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 16px;
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: 14px;
+    }
+
+    .diagram-num {
+      background: var(--primary-glow);
+      color: #93c5fd;
+      border: 1px solid rgba(59, 130, 246, 0.4);
+      padding: 2px 10px;
+      border-radius: 12px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+      display: inline-block;
+    }
+
+    .diagram-title {
+      font-size: 1.45rem;
+      font-weight: 700;
+      color: var(--text-main);
+    }
+
+    .diagram-desc {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      margin-bottom: 24px;
+      line-height: 1.6;
+    }
+
+    /* Mermaid render container */
+    .mermaid-wrapper {
+      background: var(--bg-main);
+      border: 1px solid var(--border-color);
+      border-radius: 10px;
+      padding: 24px;
+      overflow-x: auto;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 280px;
+    }
+
+    .mermaid {
+      width: 100%;
+      text-align: center;
+    }
+
+    /* Notes callout */
+    .callout {
+      background: var(--bg-card-alt);
+      border-left: 4px solid var(--primary);
+      padding: 14px 18px;
+      border-radius: 0 8px 8px 0;
+      margin-top: 20px;
+      font-size: 0.88rem;
+      color: var(--text-muted);
+    }
+
+    .callout strong {
+      color: var(--text-main);
+    }
+
+    /* Footer */
+    footer {
+      border-top: 1px solid var(--border-color);
+      text-align: center;
+      padding: 24px;
+      color: var(--text-dim);
+      font-size: 0.85rem;
+      margin-top: 40px;
+    }
+  </style>
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10.9.1/dist/mermaid.min.js"></script>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: 'dark',
+      securityLevel: 'loose',
+      fontFamily: 'system-ui, -apple-system, Segoe UI, Roboto, sans-serif'
+    });
+  </script>
+</head>
+<body>
+
+  <!-- Top Navigation Bar -->
+  <header>
+    <div class="brand">
+      <span class="brand-badge">UniPutumayo • 2026</span>
+      <span class="brand-title">Agente de Raíz Viva Naturales</span>
+    </div>
+    <nav class="nav-links">
+      <a href="presentacion.html" class="nav-btn"><span>📽️</span> Diapositivas</a>
+      <a href="diagramas.html" class="nav-btn active"><span>📊</span> Diagramas</a>
+      <a href="ficha-agente.html" class="nav-btn"><span>📄</span> Ficha del Agente</a>
+    </nav>
+  </header>
+
+  <div class="container">
+    <!-- Hero Section -->
+    <section class="hero">
+      <span class="hero-tag">Documentación de Arquitectura de Software</span>
+      <h1 class="hero-title">Diagramas Técnicos y de Arquitectura</h1>
+      <p class="hero-subtitle">
+        Representación formal de la topología local, secuencias conversacionales multimodal, modelo de datos relacional/vectorial y ciclo de vida de acciones <em>Human-in-the-Loop</em> sobre la tienda en línea ficticia <strong>Raíz Viva Naturales</strong> con recaudo contra entrega en Colombia.
+      </p>
+
+      <div class="jump-pills">
+        <a href="#diagrama-1" class="jump-pill">1. Arquitectura de Componentes</a>
+        <a href="#diagrama-2" class="jump-pill">2. Secuencia Voz a Acción</a>
+        <a href="#diagrama-3" class="jump-pill">3. Modelo Entidad-Relación</a>
+        <a href="#diagrama-4" class="jump-pill">4. Flujo Human-in-the-Loop</a>
+      </div>
+    </section>
+
+    <!-- DIAGRAMA 1 -->
+    <article class="diagram-card" id="diagrama-1">
+      <div class="diagram-header">
+        <div>
+          <span class="diagram-num">Diagrama 1</span>
+          <h2 class="diagram-title">Arquitectura General de Componentes</h2>
+        </div>
+      </div>
+      <p class="diagram-desc">
+        Ilustra la topología integral desplegada al 100% en infraestructura local (GPU NVIDIA RTX 4050 6 GB en Windows). Articula el cliente web interactivo con el backend en FastAPI, el pipeline de audio (ffmpeg, faster-whisper, Piper TTS), el servidor de inferencia Ollama (Qwen3:4b y embeddinggemma) y las dos áreas de persistencia en PostgreSQL: el esquema transaccional <code>tienda</code> y la base vectorial del agente con extensión <code>pgvector</code>.
+      </p>
+
+      <div class="mermaid-wrapper">
+        <pre class="mermaid">
+flowchart TB
+    subgraph CLIENTE["Navegador Web (Frontend - Puerto 8765)"]
+        direction TB
+        UI["Interfaz Web (HTML5 / CSS3 / Vanilla JS)"]
+        REC["Módulo de Grabación (MediaRecorder API - Opus/WebM)"]
+        PLAYER["Reproductor de Audio (HTMLAudioElement / Fallback SpeechSynthesis)"]
+        PANEL["Panel de Trazabilidad (Métricas ms, Tool Calls JSON, Fuentes)"]
+        CARDS["Tarjetas de Acción Pendiente (Confirmar / Cancelar en vivo)"]
+        UI --> REC
+        UI --> PLAYER
+        UI --> PANEL
+        UI --> CARDS
+    end
+
+    subgraph BACKEND["Backend FastAPI (Puerto 8765)"]
+        direction TB
+        API_ROUTER["Router REST y Endpoints (/api/config, /api/chat, /api/voice, /api/actions, /api/health)"]
+        
+        subgraph AUDIO_ENGINE["Motor de Audio Local"]
+            direction TB
+            FFMPEG["Normalizador de Audio (ffmpeg WAV 16kHz mono)"]
+            STT["STT Transcripción (faster-whisper small - CUDA / CPU)"]
+            TTS["TTS Síntesis (Piper TTS - Voz es_MX-claude-high)"]
+        end
+
+        subgraph CORE_AGENT["Núcleo del Agente (app/agent.py)"]
+            direction TB
+            AGENT_LOOP["Bucle de Razonamiento (Máximo 4 rondas de herramientas)"]
+            SYS_PROMPT["Prompt de Sistema (Sin promesas médicas, Filtro PII, Formato conciso)"]
+        end
+
+        subgraph TOOL_REGISTRY["Herramientas Fijas Parametrizadas (app/tools_demo.py)"]
+            direction TB
+            TOOL_METRICAS["metricas_periodo(periodo)"]
+            TOOL_TOP["top_productos(periodo)"]
+            TOOL_CIUDADES["ventas_por_ciudad(periodo)"]
+            TOOL_TRANS["rendimiento_transportadoras(periodo)"]
+            TOOL_BUSCAR["buscar_pedido(numero)"]
+            TOOL_ESTADOS["pedidos_por_estado(estado, limite)"]
+            TOOL_NOVEDADES["novedades_abiertas()"]
+            TOOL_STOCK["alertas_stock()"]
+            TOOL_REVISION["explicar_revision(numero)"]
+            TOOL_COTIZAR["cotizar_envio(ciudad, dpto, productos)"]
+            TOOL_ACTION_PEDIDO["proponer_pedido(...)"]
+            TOOL_ACTION_ESTADO["proponer_cambio_estado(numero, accion)"]
+            TOOL_RAG["buscar_en_documentos(pregunta)"]
+        end
+    end
+
+    subgraph OLLAMA["Servidor Local Ollama (Puerto 11434)"]
+        direction TB
+        LLM["LLM: qwen3:4b-instruct (think: false, Tool Calling estructurado)"]
+        EMBED["Embeddings: embeddinggemma (Dimensión 768)"]
+    end
+
+    subgraph STORAGE_TIENDA["Base de Datos Transaccional (PostgreSQL)"]
+        direction TB
+        SCHEMA_TIENDA["Esquema tienda:<br>• productos (catálogo natural, precios COP, costos, existencias)<br>• clientes (directorio con teléfonos ficticios enmascarados)<br>• transportadoras (Interrapidísimo, Coordinadora, Envía, etc.)<br>• tarifas (zonas geográficas, valores base y por kg)<br>• pedidos (códigos RV-xxxx, estados, fletes, método de pago)<br>• pedido_items (detalle por producto)<br>• novedades (incidencias en carretera)<br>• acciones (bitácora de operaciones del copiloto)"]
+    end
+
+    subgraph STORAGE_AGENT["Base del Agente y Vectorial (PostgreSQL + pgvector)"]
+        direction TB
+        VEC_EXT["Extensión vector (Índice HNSW por distancia coseno)"]
+        AGENT_TABLES["Tablas del Agente:<br>• documents (manuales con prefijo demo/)<br>• chunks (fragmentos de texto + embedding vector(768))<br>• conversations, messages, tool_calls<br>• pending_actions, eval_runs, eval_results"]
+    end
+
+    subgraph KNOWLEDGE["Ingestión de Conocimiento de la Tienda"]
+        direction TB
+        KNOWLEDGE_DOCS["8 Documentos Markdown (knowledge_demo/*.md):<br>• Políticas de envío, pago contra entrega, devoluciones, novedades,<br>  preguntas frecuentes, proceso del pedido, atención y datos"]
+        INGEST_SCRIPT["Script de Ingestión (scripts/ingest.py --demo)"]
+        KNOWLEDGE_DOCS --> INGEST_SCRIPT
+        INGEST_SCRIPT --> STORAGE_AGENT
+    end
+
+    %% Conexiones Cliente <-> Backend
+    REC -->|"POST /api/voice (multipart audio)"| API_ROUTER
+    UI -->|"POST /api/chat (JSON)"| API_ROUTER
+    CARDS -->|"POST /api/actions/{id}/confirm o cancel"| API_ROUTER
+    API_ROUTER -->|"Audio WAV /api/audio/{id}.wav"| PLAYER
+    API_ROUTER -->|"Respuesta JSON con trazabilidad y métricas"| UI
+
+    %% Conexiones Backend <-> Servicios Locales
+    API_ROUTER --> FFMPEG --> STT --> AGENT_LOOP
+    AGENT_LOOP <--> LLM
+    TOOL_RAG <--> EMBED
+    TOOL_REGISTRY <--> SCHEMA_TIENDA
+    TOOL_RAG <--> STORAGE_AGENT
+    AGENT_LOOP --> TTS
+        </pre>
+      </div>
+
+      <div class="callout">
+        <strong>Punto Clave de Diseño:</strong> Ningún dato privado ni audio sale a servidores externos. Toda la inferencia corre en local con latencias inferiores a 3 segundos gracias a la aceleración por hardware CUDA en la GPU dedicada.
+      </div>
+    </article>
+
+    <!-- DIAGRAMA 2 -->
+    <article class="diagram-card" id="diagrama-2">
+      <div class="diagram-header">
+        <div>
+          <span class="diagram-num">Diagrama 2</span>
+          <h2 class="diagram-title">Diagrama de Secuencia: Consulta por Voz a Acción</h2>
+        </div>
+      </div>
+      <p class="diagram-desc">
+        Traza cronológica de una interacción hablada típica (ejemplo: <em>"¿Cuántos pedidos van este mes?"</em>). Muestra la captura del flujo de audio en el navegador, la normalización temporal, la transcripción local, el bucle de razonamiento con invocación a herramientas fijas en PostgreSQL, la síntesis del habla con Piper TTS y el retorno simultáneo del audio y los metadatos de trazabilidad.
+      </p>
+
+      <div class="mermaid-wrapper">
+        <pre class="mermaid">
+sequenceDiagram
+    autonumber
+    actor Usuario as Comerciante (Voz)
+    participant UI as Interfaz Web (Browser)
+    participant API as FastAPI Router (/api/voice)
+    participant FF as Normalizador ffmpeg
+    participant STT as faster-whisper (CUDA)
+    participant Agent as app/agent.py
+    participant Ollama as Ollama (qwen3:4b-instruct)
+    participant Tools as app/tools_demo.py
+    participant DB as PostgreSQL (Esquema tienda)
+    participant TTS as Piper TTS (es_MX)
+
+    Usuario->>UI: Habla manteniendo pulsado el botón de micrófono
+    UI->>API: POST /api/voice (blob audio WebM/Opus)
+    Note over API: Inicia medición de latencia global
+    API->>FF: Normalizar a WAV 16 kHz mono
+    FF-->>API: Archivo WAV temporal
+    API->>STT: Transcribir audio (es)
+    STT-->>API: Texto: "¿Cuántos pedidos van este mes?"
+    
+    API->>Agent: chat(text, conversation_id)
+    Agent->>Ollama: POST /api/chat (prompt del sistema + historial + mensaje)
+    Ollama-->>Agent: Retorna tool_call: metricas_periodo(periodo="mes")
+    
+    Agent->>Tools: metricas_periodo(periodo="mes")
+    Tools->>DB: SELECT count(*), sum(total)... WHERE fecha en mes actual
+    DB-->>Tools: 80 pedidos (14 confirmados, 16 nuevos...), $6.078.000 COP
+    Tools-->>Agent: JSON con métricas consolidadas del mes
+    
+    Agent->>Ollama: POST /api/chat (historial + tool_result)
+    Ollama-->>Agent: Respuesta final concisa en 3 frases naturales
+    
+    Agent->>TTS: Sintetizar respuesta audible
+    TTS-->>Agent: Archivo audio/uuid.wav generado
+    
+    Agent-->>API: Respuesta completa + tool_calls + métricas de tiempo (ms)
+    API-->>UI: JSON {answer, audioUrl, transcript, toolCalls, timings}
+    
+    par Reproducción y Renderizado
+        UI->>Usuario: Reproduce audio sintetizado en altavoces
+        UI->>UI: Despliega mensaje en el chat y actualiza Panel de Trazabilidad
+    end
+        </pre>
+      </div>
+
+      <div class="callout">
+        <strong>Respaldo de Navegador:</strong> Si el sistema no cuenta con Piper TTS disponible o la síntesis falla, el cliente conmuta de forma transparente a la API nativa de síntesis de voz del navegador (<code>speechSynthesis</code>), garantizando continuidad en la experiencia.
+      </div>
+    </article>
+
+    <!-- DIAGRAMA 3 -->
+    <article class="diagram-card" id="diagrama-3">
+      <div class="diagram-header">
+        <div>
+          <span class="diagram-num">Diagrama 3</span>
+          <h2 class="diagram-title">Modelo de Datos Entidad-Relación</h2>
+        </div>
+      </div>
+      <p class="diagram-desc">
+        Detalla las tablas relacionales del esquema <code>tienda</code> para la operación del negocio (productos naturales, clientes con teléfonos enmascarados, transportadoras colombianas, pedidos, items y novedades) y las tablas del agente conversacional para persistencia de sesiones, llamadas a herramientas y vectores semánticos en <code>pgvector</code>.
+      </p>
+
+      <div class="mermaid-wrapper">
+        <pre class="mermaid">
+erDiagram
+    tienda_productos ||--o{ tienda_pedido_items : "se incluye en"
+    tienda_clientes ||--o{ tienda_pedidos : "realiza"
+    tienda_transportadoras ||--o{ tienda_pedidos : "despacha"
+    tienda_transportadoras ||--o{ tienda_tarifas : "tarifa segun zona"
+    tienda_pedidos ||--|{ tienda_pedido_items : "contiene"
+    tienda_pedidos ||--o{ tienda_novedades : "presenta"
+    tienda_pedidos ||--o{ tienda_acciones : "origina"
+
+    tienda_productos {
+        uuid id PK
+        string sku UK "Codigo unico RV-TEV-01"
+        string nombre "Te Verde Organico"
+        string categoria "Infusiones, Suplementos"
+        int precio_venta "Valor unitario en COP"
+        int costo "Costo unitario en COP"
+        int stock "Existencias fisicas en bodega"
+        int stock_minimo "Umbral de alerta"
+    }
+
+    tienda_clientes {
+        uuid id PK
+        string nombre "Nombre ficticio del cliente"
+        string ciudad "Ciudad de entrega"
+        string departamento "Departamento colombiano"
+        string telefono "Ficticio enmascarado 300 000 0000"
+    }
+
+    tienda_transportadoras {
+        uuid id PK
+        string nombre "Interrapidisimo, Envia, Coordinadora"
+        int dias_promedio "Promedio dias de entrega"
+        boolean activo "Habilitada para envios"
+    }
+
+    tienda_tarifas {
+        uuid id PK
+        uuid transportadora_id FK
+        string departamento "Destino geografico o Nacional"
+        int valor_base "Flete base en COP"
+        int valor_por_kg "Recargo por kg en COP"
+    }
+
+    tienda_pedidos {
+        uuid id PK
+        string numero UK "Codigo de orden RV-1001"
+        timestamptz fecha "Fecha y hora de registro"
+        uuid cliente_id FK
+        string ciudad "Ciudad destino"
+        string departamento "Departamento destino"
+        uuid transportadora_id FK
+        string estado "nuevo, confirmado, despachado"
+        string metodo_pago "contra_entrega, pagado"
+        int subtotal "Subtotal productos en COP"
+        int flete "Costo de transporte en COP"
+        int total "Monto total del pedido en COP"
+        string creado_por "tienda o copiloto"
+        string motivo_revision "Causas de revision manual"
+    }
+
+    tienda_pedido_items {
+        uuid id PK
+        uuid pedido_id FK
+        uuid producto_id FK
+        int cantidad "Unidades solicitadas"
+        int precio_unitario "Precio en COP"
+        int total "Total linea en COP"
+    }
+
+    tienda_novedades {
+        uuid id PK
+        uuid pedido_id FK
+        string tipo "cliente_ausente, direccion_errada"
+        string detalle "Explicacion de transportadora"
+        string estado "abierta o resuelta"
+        timestamptz fecha "Fecha de reporte"
+    }
+
+    tienda_acciones {
+        uuid id PK
+        uuid accion_ref "Referencia a pending_actions"
+        string tipo "crear_pedido, confirmar, cancelar"
+        string pedido_numero "Codigo RV asociado"
+        jsonb detalle "Parametros de ejecucion"
+        timestamptz ejecutado_at "Fecha y hora de ejecucion"
+    }
+
+    documents ||--|{ chunks : "se divide en"
+    conversations ||--o{ messages : "registra"
+    conversations ||--o{ tool_calls : "audita"
+    conversations ||--o{ pending_actions : "propone"
+
+    documents {
+        uuid id PK
+        string source "demo/01_politicas_envio.md"
+        string slug UK "demo/politicas-envio"
+        string title "Titulo del documento"
+        string url "Ruta de consulta"
+        timestamptz updated_at "Ultima actualizacion"
+    }
+
+    chunks {
+        bigserial id PK
+        uuid document_id FK
+        int ord "Numero de fragmento"
+        text content "Contenido textual"
+        vector_768 embedding "Vector embeddinggemma 768"
+    }
+
+    conversations {
+        uuid id PK
+        timestamptz created_at "Creacion sesion"
+    }
+
+    messages {
+        bigserial id PK
+        uuid conversation_id FK
+        string role "user, assistant, tool"
+        text content "Mensaje procesado"
+        timestamptz created_at "Fecha envio"
+    }
+
+    tool_calls {
+        bigserial id PK
+        uuid conversation_id FK
+        string name "Herramienta ejecutada"
+        jsonb args "Argumentos recibidos"
+        boolean ok "Resultado exitoso o fallo"
+        int ms "Duracion en milisegundos"
+        text result_summary "Resumen conciso"
+    }
+
+    pending_actions {
+        uuid id PK
+        uuid conversation_id FK
+        string kind "crear_pedido, confirmar, cancelar"
+        string order_ref "Codigo de orden RV-xxxx"
+        jsonb payload "Datos completos de la propuesta"
+        string status "pending, confirmed, cancelled"
+        timestamptz created_at "Fecha de creacion"
+        timestamptz resolved_at "Fecha de resolucion"
+    }
+        </pre>
+      </div>
+
+      <div class="callout">
+        <strong>Cumplimiento de Privacidad:</strong> La base transaccional contiene únicamente teléfonos enmascarados ficticios (ej. <code>300 000 0000</code>) y nombres simulados para proteger los datos conforme a la Ley 1581 de 2012 de Colombia.
+      </div>
+    </article>
+
+    <!-- DIAGRAMA 4 -->
+    <article class="diagram-card" id="diagrama-4">
+      <div class="diagram-header">
+        <div>
+          <span class="diagram-num">Diagrama 4</span>
+          <h2 class="diagram-title">Diagrama de Flujo: Creación y Confirmación de Pedido (Human-in-the-Loop)</h2>
+        </div>
+      </div>
+      <p class="diagram-desc">
+        Describe el patrón de control para operaciones críticas con impacto en existencias físicas o compromisos de flete: el copiloto interpreta la orden, valida stock disponible, calcula fletes con transportadoras colombianas y genera una propuesta pendiente en la tarjeta de la interfaz. La transacción solo se materializa en la base de datos si el comerciante pulsa [Confirmar].
+      </p>
+
+      <div class="mermaid-wrapper">
+        <pre class="mermaid">
+flowchart TD
+    START(["Comerciante: 'Crea un pedido para Laura Gomez en Medellin: 2 tes verdes, contra entrega'"]) --> PARSE["Ollama extrae entidades:<br>Cliente: Laura Gomez, Destino: Medellin, Items: [Te Verde x2], Pago: contra entrega"]
+    
+    PARSE --> VALIDATE_STOCK{"Existe stock suficiente<br>en bodega?"}
+    VALIDATE_STOCK -- No --> REJECT_STOCK["Copiloto informa por voz:<br>'No hay existencias suficientes de Te Verde en bodega.'"]
+    REJECT_STOCK --> END_FLOW(["Fin del flujo"])
+
+    VALIDATE_STOCK -- "Si" --> COTIZAR["Consultar tarifas de transportadoras para Medellin:<br>Calcula flete mas economico y tiempo estimado"]
+    COTIZAR --> CALC_TOTAL["Calcular balance financiero:<br>Subtotal: 48.000 COP + Flete: 12.900 COP = Total: 60.900 COP"]
+    
+    CALC_TOTAL --> CREATE_PENDING["Insertar en pending_actions (estado='pending'):<br>Registra ID temporal, datos del cliente, productos y desglose"]
+    CREATE_PENDING --> RENDER_CARD["Interfaz Web despliega Tarjeta Pendiente:<br>• Tabla de productos y cantidades<br>• Subtotal, Flete y Total en COP<br>• Botones: [Confirmar] y [Cancelar]"]
+
+    RENDER_CARD --> USER_DECISION{"Decision del<br>Comerciante en UI"}
+    
+    USER_DECISION -- "Pulsa [Cancelar]" --> CANCEL_ACTION["POST /api/actions/{id}/cancel<br>• Actualiza pending_actions a 'cancelled'<br>• Notifica en el chat: 'Accion cancelada. No se modifico la tienda.'"]
+    CANCEL_ACTION --> END_FLOW
+
+    USER_DECISION -- "Pulsa [Confirmar]" --> EXEC_CONFIRM["POST /api/actions/{id}/confirm (En modo demo)"]
+    
+    subgraph TX_ATOMIC["Transaccion Atomica en PostgreSQL (Esquema tienda)"]
+        direction TB
+        INSERT_PEDIDO["1. INSERT INTO tienda.pedidos (numero='RV-1141', creado_por='copiloto', ...)"]
+        INSERT_ITEMS["2. INSERT INTO tienda.pedido_items (detalle por producto)"]
+        UPDATE_STOCK["3. UPDATE tienda.productos SET stock = stock - cantidad WHERE id = ..."]
+        INSERT_AUDIT["4. INSERT INTO tienda.acciones (registro de auditoria de la creacion)"]
+        UPDATE_PENDING["5. UPDATE pending_actions SET status='confirmed'"]
+        INSERT_PEDIDO --> INSERT_ITEMS --> UPDATE_STOCK --> INSERT_AUDIT --> UPDATE_PENDING
+    end
+
+    EXEC_CONFIRM --> TX_ATOMIC
+    TX_ATOMIC --> SUCCESS_RESPONSE["API responde status: 'confirmed'<br>Mensaje: 'Pedido RV-1141 creado con exito en Raiz Viva Naturales. Stock descontado.'"]
+    SUCCESS_RESPONSE --> NOTIFY_USER["Interfaz muestra alerta verde y actualiza la conversacion"]
+    NOTIFY_USER --> END_FLOW
+        </pre>
+      </div>
+
+      <div class="callout">
+        <strong>Garantía Transaccional:</strong> La inserción del pedido, la inserción de items, la deducción de existencias en <code>tienda.productos</code> y la bitácora en <code>tienda.acciones</code> se ejecutan dentro de un único bloque transaccional con <code>FOR UPDATE</code> para evitar condiciones de carrera o inconsistencias de stock.
+      </div>
+    </article>
+  </div>
+
+  <footer>
+    Proyecto Académico UniPutumayo 2026 • Copiloto de Operación por Voz para Tiendas en Línea ("Raíz Viva Naturales")
+  </footer>
+
+</body>
+</html>

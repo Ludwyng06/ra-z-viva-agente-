@@ -1,0 +1,194 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Agente de Raíz Viva Naturales</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg-main: #090d16;
+      --bg-card: #111827;
+      --bg-heading: #162032;
+      --border-color: #334155;
+      --text-main: #f8fafc;
+      --text-muted: #cbd5e1;
+      --font-sans: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', monospace;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: var(--bg-main);
+      color: var(--text-main);
+      font-family: var(--font-sans);
+      line-height: 1.5;
+    }
+
+    main {
+      width: 100%;
+      max-width: 1840px;
+      margin: 0 auto;
+      padding: 40px 48px;
+    }
+
+    h1 {
+      margin: 0 0 28px;
+      color: #ffffff;
+      font-size: clamp(2rem, 2.5vw, 3rem);
+      font-weight: 800;
+      line-height: 1.2;
+      letter-spacing: -0.5px;
+    }
+
+    .table-container {
+      overflow-x: auto;
+      border: 1px solid var(--border-color);
+      border-radius: 10px;
+      background: var(--bg-card);
+      box-shadow: 0 4px 12px rgb(0 0 0 / 30%);
+    }
+
+    table {
+      width: 100%;
+      min-width: 1000px;
+      border-collapse: collapse;
+      table-layout: fixed;
+      text-align: left;
+      font-size: 1.125rem;
+    }
+
+    caption {
+      padding: 16px 20px;
+      color: #ffffff;
+      font-size: 1.25rem;
+      font-weight: 700;
+      text-align: left;
+    }
+
+    .component { width: 18%; }
+    .technology { width: 39%; }
+    .version { width: 15%; }
+    .role { width: 28%; }
+
+    thead th {
+      background: var(--bg-heading);
+      color: var(--text-muted);
+      font-size: 1rem;
+      font-weight: 700;
+    }
+
+    th, td {
+      padding: 14px 20px;
+      border-top: 1px solid var(--border-color);
+      vertical-align: top;
+      overflow-wrap: anywhere;
+    }
+
+    tbody th {
+      color: #ffffff;
+      font-weight: 600;
+    }
+
+    td {
+      color: #e2e8f0;
+    }
+
+    code {
+      color: #93c5fd;
+      font-family: var(--font-mono);
+      font-size: 0.95em;
+    }
+
+    @media (max-width: 1100px) {
+      main { padding: 24px; }
+      table { font-size: 1rem; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Agente de Raíz Viva Naturales</h1>
+    <div class="table-container">
+      <table>
+        <caption>Tecnologías</caption>
+        <colgroup>
+          <col class="component">
+          <col class="technology">
+          <col class="version">
+          <col class="role">
+        </colgroup>
+        <thead>
+          <tr>
+            <th scope="col">Componente</th>
+            <th scope="col">Tecnología</th>
+            <th scope="col">Versión</th>
+            <th scope="col">Rol</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">Voz a texto (STT)</th>
+            <td>faster-whisper (Whisper <code>small</code>, sobre CTranslate2 4.8.5)</td>
+            <td>1.2.1</td>
+            <td>Transcribe la voz en español</td>
+          </tr>
+          <tr>
+            <th scope="row">Modelo de lenguaje</th>
+            <td>Qwen3 4B Instruct (<code>qwen3:4b-instruct</code>) en Ollama</td>
+            <td>Ollama 0.40.12</td>
+            <td>Razona y decide qué herramienta usar</td>
+          </tr>
+          <tr>
+            <th scope="row">Embeddings</th>
+            <td>EmbeddingGemma (<code>embeddinggemma</code>, 768 dim)</td>
+            <td>vía Ollama 0.40.12</td>
+            <td>Convierte manuales y preguntas en vectores</td>
+          </tr>
+          <tr>
+            <th scope="row">Base transaccional</th>
+            <td>PostgreSQL</td>
+            <td>16.15</td>
+            <td>Productos, pedidos, novedades, órdenes de compra, tareas</td>
+          </tr>
+          <tr>
+            <th scope="row">Base vectorial</th>
+            <td>pgvector</td>
+            <td>0.8.7</td>
+            <td>Búsqueda semántica en la base de conocimiento</td>
+          </tr>
+          <tr>
+            <th scope="row">Texto a voz (TTS)</th>
+            <td>Piper TTS (voz <code>es_MX-claude-high</code>, ONNX Runtime 1.31.1)</td>
+            <td>1.8.0</td>
+            <td>Lee las respuestas en voz alta</td>
+          </tr>
+          <tr>
+            <th scope="row">Backend</th>
+            <td>FastAPI + Uvicorn (Python 3.13.2)</td>
+            <td>0.162.0 / 0.54.0</td>
+            <td>API y servicio del agente</td>
+          </tr>
+          <tr>
+            <th scope="row">Acceso a datos</th>
+            <td>psycopg</td>
+            <td>3.3.8</td>
+            <td>Conexión a PostgreSQL</td>
+          </tr>
+          <tr>
+            <th scope="row">Interfaz</th>
+            <td>HTML5, CSS3 y JavaScript</td>
+            <td>—</td>
+            <td>Chat por voz y texto, reportes y PDF</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </main>
+</body>
+</html>

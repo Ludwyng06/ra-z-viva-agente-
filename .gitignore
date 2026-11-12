@@ -1,0 +1,51 @@
+# Configuración privada (la plantilla sí se publica)
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+# Entornos y cachés Python
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+# Audio, voces y modelos descargados
+audio/
+voices/*.onnx*
+models/
+whisper-models/
+faster-whisper*/
+.cache/
+huggingface/
+# Archivos generados y datos locales
+tmp/
+*.log
+*.pdf
+*.dump
+*.sqlite*
+*.db
+node_modules/
+# Resultados de evaluación: conservar casos y scripts, no conversaciones
+/eval/*.json
+/eval/reporte*.md
+# Entregas y notas internas de orquestación
+R183A-ENTREGA.md
+*-ENTREGA.md
+*ORQUESTACION*
+*orquestacion*
+AGENTS.md
+CLAUDE.md
+GEMINI.md
+/web/verify-ui-controls.md
+# Sistema/editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

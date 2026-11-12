@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 120 120">
+  <rect width="120" height="120" fill="#f7f4ee" />
+  <!-- Delicate organic linen weave grid -->
+  <path d="M0 30 H120 M0 60 H120 M0 90 H120 M30 0 V120 M60 0 V120 M90 0 V120" stroke="#eee8dc" stroke-width="0.8" opacity="0.6"/>
+  
+  <!-- Subtle natural kraft paper fibers and speckles -->
+  <path d="M12 18 Q28 22 42 16" stroke="#ded4c0" stroke-width="0.9" fill="none" opacity="0.45" stroke-linecap="round"/>
+  <path d="M75 35 Q90 31 106 38" stroke="#d8ccb6" stroke-width="0.8" fill="none" opacity="0.4" stroke-linecap="round"/>
+  <path d="M25 85 Q40 92 56 86" stroke="#ded4c0" stroke-width="0.9" fill="none" opacity="0.45" stroke-linecap="round"/>
+  <path d="M68 95 Q82 88 102 96" stroke="#d8ccb6" stroke-width="0.8" fill="none" opacity="0.4" stroke-linecap="round"/>
+  
+  <!-- Organic micro flecks -->
+  <circle cx="22" cy="45" r="0.75" fill="#c4b59d" opacity="0.35"/>
+  <circle cx="52" cy="22" r="0.6" fill="#baa990" opacity="0.3"/>
+  <circle cx="88" cy="52" r="0.8" fill="#c4b59d" opacity="0.35"/>
+  <circle cx="38" cy="108" r="0.6" fill="#baa990" opacity="0.3"/>
+  <circle cx="104" cy="78" r="0.7" fill="#c4b59d" opacity="0.35"/>
+  <circle cx="65" cy="70" r="0.5" fill="#baa990" opacity="0.25"/>
+</svg>

@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 320" fill="none">
+  <!-- Subtle sage and earthy botanical branches in the bottom left -->
+  <g opacity="0.85">
+    <!-- Main stem rising from bottom left corner -->
+    <path d="M0 300 C60 280 120 240 160 170 C190 120 220 70 260 20" stroke="#4a6f53" stroke-width="2.2" stroke-linecap="round" fill="none"/>
+    
+    <!-- Secondary organic root/branch line -->
+    <path d="M20 320 C50 260 90 220 140 190" stroke="#8a6742" stroke-width="1.8" stroke-linecap="round" fill="none"/>
+    
+    <!-- Root hairs at bottom-most edge -->
+    <path d="M10 310 C25 295 40 295 55 305" stroke="#9c754d" stroke-width="1.3" stroke-linecap="round"/>
+    <path d="M45 275 C60 265 72 268 85 278" stroke="#9c754d" stroke-width="1.3" stroke-linecap="round"/>
+    
+    <!-- Leaves rising along the stem -->
+    <!-- Leaf 1 -->
+    <path d="M70 260 C60 242 70 225 88 222 C92 238 85 255 70 260 Z" fill="#4d7c5a" opacity="0.9"/>
+    <!-- Leaf 2 -->
+    <ellipse cx="105" cy="225" rx="15" ry="10" transform="rotate(-35 105 225)" fill="#5c8d6a" opacity="0.85"/>
+    <!-- Leaf 3 -->
+    <path d="M125 195 C115 178 128 162 145 160 C150 175 142 192 125 195 Z" fill="#4d7c5a" opacity="0.9"/>
+    <!-- Leaf 4 (Eucalyptus round leaves) -->
+    <ellipse cx="155" cy="155" rx="14" ry="9.5" transform="rotate(30 155 155)" fill="#629470" opacity="0.85"/>
+    <ellipse cx="175" cy="130" rx="14" ry="9" transform="rotate(-40 175 130)" fill="#52835f" opacity="0.9"/>
+    <!-- Leaf 5 -->
+    <path d="M188 105 C178 90 190 75 208 72 C212 88 205 102 188 105 Z" fill="#629470" opacity="0.85"/>
+    <!-- Leaf 6 (Near top of branch) -->
+    <ellipse cx="225" cy="65" rx="13" ry="8.5" transform="rotate(25 225 65)" fill="#52835f" opacity="0.9"/>
+    <!-- Leaf 7 tip -->
+    <path d="M245 42 C238 28 250 15 262 18 C262 32 258 42 245 42 Z" fill="#447352" opacity="0.85"/>
+    
+    <!-- Golden honey accent buds -->
+    <circle cx="85" cy="245" r="3" fill="#d97706" opacity="0.75"/>
+    <circle cx="132" cy="180" r="3.2" fill="#d97706" opacity="0.75"/>
+    <circle cx="168" cy="142" r="3" fill="#c26500" opacity="0.7"/>
+    <circle cx="205" cy="85" r="3" fill="#d97706" opacity="0.75"/>
+    <circle cx="238" cy="48" r="2.8" fill="#d97706" opacity="0.7"/>
+  </g>
+</svg>

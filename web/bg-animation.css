@@ -1,0 +1,33 @@
+/* ==========================================================================
+   Raíz Viva Naturales — Animación Bio-Neuronal de Fondo
+   Sinergia entre estética botánica natural y red inteligente futurista.
+   ========================================================================== */
+
+#bg-neural-canvas {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  width: 100dvw;
+  height: 100dvh;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.85;
+  transition: opacity 0.6s ease;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+/* Garantiza que la interfaz principal mantenga contexto de apilamiento
+   sobre el canvas de fondo respetando su fondo translúcido orgánico */
+.app {
+  position: relative;
+  z-index: 1;
+}
+
+/* Accesibilidad: preferencia de movimiento reducido */
+@media (prefers-reduced-motion: reduce) {
+  #bg-neural-canvas {
+    opacity: 0.35;
+  }
+}
